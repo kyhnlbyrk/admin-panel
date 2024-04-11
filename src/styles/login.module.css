@@ -12,7 +12,12 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
- min-width: 375px;
+	width: 375px;
+}
+
+.alert {
+	margin-bottom: 16px;
+	width: 375px;
 }
 
 @media only screen and (max-width: 720px) {
@@ -23,6 +28,11 @@
 
 	.login-card {
 		width: 100%;
-  min-width: initial;
+		min-width: initial;
+	}
+
+	.alert {
+		width: 100%;
+		min-width: initial;
 	}
 }

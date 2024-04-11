@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { Login as LoginService } from '@/services/auth'
 import Spinner from '@/components/Spinner'
+import Cookies from 'js-cookie'
 
 const FormValidation = yup.object({
 	email: yup
@@ -43,7 +44,7 @@ export default function Login() {
 	}
 
  if (mutation.isSuccess) {
-  console.log('Login success!')
+  Cookies.set('isLoggedin', 'yes', { expires: 7 })
  }
 
 	return (

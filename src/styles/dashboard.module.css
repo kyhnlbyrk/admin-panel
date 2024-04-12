@@ -1,0 +1,44 @@
+.container {
+	max-width: 1440px;
+	margin: auto;
+	margin-top: 20px;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	gap: 24px;
+ margin-top: 20px;
+}
+
+.dashboard-card {
+	padding: 16px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+ flex-grow: 1;
+ flex-basis: 100%;
+ background-color: rgb(16, 20, 24);
+}
+
+.card-title {
+	margin-top: 0px;
+}
+
+@media only screen and (min-width: 720px) {
+	.wrapper {
+		flex-direction: row;
+	}
+
+	.container {
+		padding: 0px;
+	}
+
+	.dashboard-card {
+		padding: 24px;
+	}
+}

@@ -8,8 +8,9 @@ import { LoginType } from '../types/login.type'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { Login as LoginService } from '@/services/auth'
-import Spinner from '@/components/Spinner'
 import Cookies from 'js-cookie'
+import CircularProgress from '@mui/material/CircularProgress'
+import { useRouter } from 'next/router'
 
 const FormValidation = yup.object({
 	email: yup
@@ -22,6 +23,7 @@ const FormValidation = yup.object({
 export default function Login() {
 	const theme = useTheme()
 	const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+	const router = useRouter()
 
 	const methods = useForm<LoginType>({
 		defaultValues: {
@@ -39,13 +41,13 @@ export default function Login() {
 	const mutation = useMutation({ mutationFn: LoginService })
 
 	const onSubmit = async (data: LoginType) => {
-		console.log(data)
 		mutation.mutate(data)
 	}
 
- if (mutation.isSuccess) {
-  Cookies.set('isLoggedin', 'yes', { expires: 7 })
- }
+	if (mutation.isSuccess) {
+		Cookies.set('isLoggedin', 'yes', { expires: 7 })
+		router.push('/')
+	}
 
 	return (
 		<>
@@ -55,7 +57,7 @@ export default function Login() {
 			<div className={styles['login-container']}>
 				<Alert className={styles['alert']} variant="filled" severity={!!mutation.error ? 'error' : 'info'}>
 					{!!mutation.error ? (
-      //@ts-ignore
+						//@ts-ignore
 						mutation.error?.response.data.message
 					) : (
 						<>
@@ -90,7 +92,14 @@ export default function Login() {
 					>
 						Password
 					</TextField>
-					<Button disabled={mutation.isPending} endIcon={mutation.isPending ? <Spinner /> : <></>} type="submit" fullWidth size={isMobile ? 'small' : 'large'} variant="contained">
+					<Button
+						disabled={mutation.isPending}
+						endIcon={mutation.isPending ? <CircularProgress size={20} color="inherit" /> : <></>}
+						type="submit"
+						fullWidth
+						size={isMobile ? 'small' : 'large'}
+						variant="contained"
+					>
 						Login
 					</Button>
 				</Paper>

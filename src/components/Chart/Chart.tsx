@@ -3,7 +3,7 @@ import React from 'react'
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 
-const Chart = prop => {
+const Chart = () => {
 	const data = [
 		[1262304000000, 0.7537],
 		[1262563200000, 0.6951],

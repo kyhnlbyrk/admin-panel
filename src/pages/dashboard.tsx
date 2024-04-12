@@ -5,6 +5,7 @@ import { withAuthGuard } from '@/components/hoc/authGuard'
 import DataTable, { DataTableProps } from '@/components/DataTable'
 import styles from '@/styles/dashboard.module.css'
 import { Paper, Typography, styled } from '@mui/material'
+import Chart from '@/components/Chart'
 
 const Title = styled(Typography)(({ theme, color }) => ({
 	//@ts-ignore
@@ -61,6 +62,12 @@ export default function Dashboard(props: DashboardProps) {
 						<Paper className={styles['dashboard-card']}>
 							<h2 className={styles['card-title']}>Top Employees</h2>
 							<DataTable {...employeeProps} />
+						</Paper>
+					</div>
+					<div className={styles.wrapper}>
+						<Paper className={styles['dashboard-card']}>
+							<h2 className={styles['card-title']}>Day to Day Change</h2>
+							<Chart />
 						</Paper>
 					</div>
 				</div>
